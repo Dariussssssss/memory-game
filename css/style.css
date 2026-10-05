@@ -7,6 +7,7 @@
   outline: none;
   transition: 0.3s ease-in-out;
 }
+
 html {
   scroll-behavior: smooth;
 }
@@ -38,19 +39,24 @@ img {
   --color-black: #000;
   --font: 'Space Mono', monospace;
 }
+
 .container {
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 20px;
 }
+
 .header {
   display: flex;
   align-items: center;
+  justify-content: center;
   min-height: 100px;
 }
+
 h1 {
   font-size: 50px;
 }
+
 .wrapper {
   min-height: 100vh;
   display: flex;
@@ -61,7 +67,8 @@ h1 {
   background-position: center;
   background-repeat: no-repeat;
 }
-.game {
+
+.game-section {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -71,6 +78,7 @@ h1 {
   margin: auto;
   perspective: 1000px;
 }
+
 .card {
   width: 24%;
   height: 24%;
@@ -78,14 +86,18 @@ h1 {
   position: relative;
   transition: transform 0.5s;
   transform-style: preserve-3d;
+  cursor: pointer;
 }
+
 .card:active {
   transform: scale(0.9);
   transition: transform 0.2s;
 }
+
 .card.flip {
   transform: rotateY(180deg);
 }
+
 .front,
 .back {
   width: 100%;
@@ -95,6 +107,7 @@ h1 {
   background-color: #fff;
   backface-visibility: hidden;
 }
+
 .front {
   transform: rotateY(180deg);
 }
@@ -102,6 +115,7 @@ h1 {
 .footer {
   width: 100%;
 }
+
 .footer-navigation {
   display: flex;
   flex-wrap: wrap;
@@ -110,14 +124,17 @@ h1 {
   padding-top: 20px;
   padding-bottom: 20px;
 }
+
 .footer-list {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .footer-item:not(:last-child) {
   padding-right: 20px;
 }
+
 .rss {
   margin-left: auto;
 }
@@ -140,30 +157,36 @@ h1 {
   h1 {
     font-size: 40px;
   }
+
   .game {
     width: 400px;
     height: 400px;
   }
+
   .footer-item,
   .footer-link,
   .rss {
     font-size: 25px;
   }
 }
+
 @media (max-width: 600px) {
   h1 {
     font-size: 35px;
   }
+
   .game {
     width: 400px;
     height: 400px;
   }
+
   .footer-item,
   .footer-link,
   .rss {
     font-size: 20px;
   }
 }
+
 @media (max-width: 470px) {
   .footer-item,
   .footer-link,
@@ -171,6 +194,7 @@ h1 {
     font-size: 17px;
   }
 }
+
 @media (max-width: 430px) {
   .game {
     width: 300px;
@@ -187,12 +211,14 @@ h1 {
   left: 0;
   opacity: 1;
   visibility: visible;
-  
+
 }
-.popup-close .popup:target{
+
+.popup-close .popup:target {
   opacity: 0;
   visibility: hidden;
 }
+
 .popup-close {
   position: absolute;
   width: 100%;
@@ -200,6 +226,7 @@ h1 {
   top: 0;
   left: 0;
 }
+
 .popup__body {
   min-height: 100%;
   display: flex;
@@ -207,6 +234,7 @@ h1 {
   justify-content: center;
   padding: 30px 10px;
 }
+
 .popup__content {
   background-color: #fff;
   color: #000;
@@ -214,6 +242,7 @@ h1 {
   padding: 30px;
   position: relative;
 }
+
 .popup-link__close {
   position: absolute;
   right: 10px;
@@ -221,6 +250,7 @@ h1 {
   font-size: 20px;
   color: #000;
 }
+
 .popup__title {
   font-size: 40px;
   margin: 0 0 1em 0;
