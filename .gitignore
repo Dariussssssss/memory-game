@@ -1,0 +1,56 @@
+# ===== Зависимости =====
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# ===== Сборка / дистрибутив =====
+dist/
+build/
+*.min.js
+*.min.css
+
+# ===== Переменные окружения =====
+.env
+.env.local
+.env.*.local
+
+# ===== Логи =====
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ===== Кэш =====
+.cache/
+.parcel-cache/
+.vite/
+.eslintcache
+.stylelintcache
+
+# ===== IDE / Редакторы =====
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+*.swp
+*.swo
+*~
+
+# ===== Операционные системы =====
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ===== Тесты / Покрытие =====
+coverage/
+.nyc_output/
+
+# ===== Прочее =====
+*.tgz
+.temp/
+.tmp/
