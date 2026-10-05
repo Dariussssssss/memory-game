@@ -50,6 +50,8 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  gap: 50px;
   min-height: 100px;
 }
 
@@ -57,6 +59,26 @@ h1 {
   font-size: 50px;
 }
 
+.score-count{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  font-size: 20px;
+}
+
+.restart-button {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  text-align: center;
+  color: #000000;
+  background: none;
+  border: 1px solid #000;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.5s ease;
+  padding: 20px;
+}
 .wrapper {
   min-height: 100vh;
   display: flex;

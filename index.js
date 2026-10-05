@@ -7,6 +7,8 @@ const cards = [];
 let hasFlippedCard = false;
 let firstCard, secondCard;
 let boardLocked = false;
+let countMoves = 0;
+let countPairs = 0;
 
 const wrapper = document.createElement('div');
 wrapper.classList.add('wrapper');
@@ -20,6 +22,21 @@ title.textContent = 'Memory game';
 const score = document.createElement('div');
 score.classList.add('score');
 
+const scoreCounts = document.createElement('div');
+scoreCounts.classList.add('score-count');
+
+const scoreMoves = document.createElement('div');
+scoreMoves.classList.add('score-moves');
+scoreMoves.textContent = `Moves: ${countMoves}`;
+
+const scorePairs = document.createElement('div');
+scorePairs.classList.add('score-pairs');
+scorePairs.textContent = `Pairs: ${countPairs}`;
+
+const restartButton = document.createElement('button');
+restartButton.classList.add('restart-button');
+restartButton.textContent = 'Restart';
+
 const gameWrapper = document.createElement('div');
 gameWrapper.classList.add('game-wrapper');
 
@@ -31,6 +48,7 @@ footer.classList.add('footer');
 
 const footerSection = document.createElement('div');
 footerSection.classList.add('footer-navigation', 'container');
+
 const footerList = document.createElement('ul');
 footerList.classList.add('footer-list');
 
@@ -53,13 +71,14 @@ rssLink.textContent = 'Rolling Scopes School';
 
 
 gameWrapper.append(gameSection);
-header.append(title, score);
+score.append(scoreCounts);
+scoreCounts.append(scoreMoves, scorePairs);
+header.append(title, score, restartButton);
 githubItem.append(githubLink);
 footerList.append(copyright, githubItem);
 footerSection.append(footerList, rssLink);
 footer.append(footerSection);
 wrapper.append(header, gameWrapper, footer);
-
 
 
 document.body.append(wrapper);
@@ -85,14 +104,18 @@ const renderCards = (dogId) => {
   return card;
 }
 
-for (let i = 1; i <= TOTAL_PAIRS; i++) {
-  cards.push(i, i)
-}
+const createCards = () => {
+  cards.length = 0;
 
-for (let i = cards.length - 1; i > 0; i -= 1) {
-  const j = Math.floor(Math.random() * (i + 1));
+  for (let i = 1; i <= TOTAL_PAIRS; i++) {
+    cards.push(i, i)
+  }
 
-  [cards[i], cards[j]] = [cards[j], cards[i]];
+  for (let i = cards.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+
+    [cards[i], cards[j]] = [cards[j], cards[i]];
+  }
 }
 
 console.log(cards);
@@ -107,6 +130,8 @@ const flipCard = (e) => {
   } else {
     hasFlippedCard = false;
     secondCard = target;
+    countMoves += 1;
+    scoreMoves.textContent = `Moves: ${countMoves}`;
     checkForMatch();
   }
 };
@@ -115,6 +140,8 @@ const checkForMatch = () => {
   if (firstCard.dataset.dog === secondCard.dataset.dog) {
     firstCard.removeEventListener('click', flipCard);
     secondCard.removeEventListener('click', flipCard);
+    countPairs += 1;
+    scorePairs.textContent = `Pairs: ${countPairs}`;
     resetBoard();
   } else {
     boardLocked = true;
@@ -133,10 +160,27 @@ const resetBoard = () => {
   secondCard = null;
 };
 
-cards.forEach((dogId) => {
-  const card = renderCards(dogId);
-  card.addEventListener('click', flipCard);
-});
+const resetGame = () => {
+  countPairs = countMoves = 0;
+  scoreMoves.textContent = `Moves: ${countMoves}`;
+  scorePairs.textContent = `Pairs: ${countPairs}`;
+  gameSection.replaceChildren();
+
+  hasFlippedCard = false;
+  firstCard = null;
+  secondCard = null;
+  boardLocked = false;
+
+  createCards();
+
+  cards.forEach((dogId) => {
+    const card = renderCards(dogId);
+    card.addEventListener('click', flipCard);
+  });
+};
+
+restartButton.addEventListener('click', resetGame);
+resetGame();
 // const popupCloseIcon = document.querySelectorAll('.close-popup');
 // if (popupCloseIcon.length > 0) {
 //   for (let index = 0; index < popupCloseIcon.length; index++) {
