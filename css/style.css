@@ -1,0 +1,371 @@
+:root {
+  --color-orange: #ff4d00;
+  --color-black: #000;
+  --color-background: #f3f4ef;
+  --color-white: #fff;
+  --font: 'Space Mono', monospace;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Syne Tactile', cursive;
+  background-color: var(--color-background);
+}
+
+a {
+  text-decoration: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+button {
+  font: inherit;
+}
+
+button:focus-visible, a:focus-visible {
+  outline: 2px solid var(--color-orange);
+  outline-offset: 3px;
+}
+
+.modal-lock {
+  overflow: hidden;
+}
+
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-image: url(../assets/images/avenue-656969_1280.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding: 30px 20px;
+}
+
+h1 {
+  font-size: 50px;
+  line-height: 1;
+  text-align: center;
+}
+
+.score-count {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.score-moves,
+.score-pairs {
+  width: 120px;
+  text-align: center;
+  font-weight: 800;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.restart-button, .leaders-button {
+  width: 130px;
+  padding: 15px 10px;
+  border: 1px solid var(--color-black);
+  border-radius: 5px;
+  background: none;
+  color: var(--color-black);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+
+.game-section {
+  width: min(500px, calc(100vw - 40px));
+  aspect-ratio: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: auto;
+  perspective: 1000px;
+}
+
+.card {
+  position: relative;
+  width: calc((100% - 15px) / 4);
+  height: calc((100% - 15px) / 4);
+  transform: scale(1);
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+  cursor: pointer;
+}
+
+.card:active {
+  transform: scale(0.9);
+  transition: transform 0.2s;
+}
+
+.card.flip {
+  transform: rotateY(180deg);
+}
+
+.front, .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  background-color: var(--color-white);
+  backface-visibility: hidden;
+}
+
+.front {
+  transform: rotateY(180deg);
+}
+
+.footer {
+  width: 100%;
+}
+
+.footer-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.footer-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.footer-item, .footer-link, .rss {
+  font-family: var(--font);
+  color: var(--color-black);
+  font-size: 35px;
+  line-height: 1;
+}
+
+.rss {
+  margin-left: auto;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: rgb(0 0 0 / 70%);
+}
+
+.modal.modal-open {
+  display: flex;
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 500px;
+  padding: 30px;
+  border-radius: 5px;
+  background-color: var(--color-white);
+  color: var(--color-black);
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+  font-size: 40px;
+  line-height: 1;
+}
+
+.modal-content p {
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.modal-content button {
+  padding: 15px 20px;
+  border: 1px solid var(--color-black);
+  border-radius: 5px;
+  background: none;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+
+.modal-content table {
+  width: 100%;
+  margin-bottom: 20px;
+  border-collapse: collapse;
+}
+
+.modal-content th, .modal-content td {
+  padding: 10px;
+  border-bottom: 1px solid var(--color-black);
+  text-align: center;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .restart-button:hover, .leaders-button:hover, .modal-content button:hover {
+    background-color: var(--color-orange);
+  }
+
+  .footer-link:hover, .rss:hover {
+    color: var(--color-orange);
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 40px;
+  }
+
+  .header {
+    gap: 25px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }
+
+  .footer-item, .footer-link, .rss {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 35px;
+  }
+
+  .score-count {
+    font-size: 18px;
+  }
+
+  .footer-navigation {
+    gap: 15px;
+  }
+
+  .footer-list {
+    gap: 15px;
+  }
+
+  .footer-item, .footer-link, .rss {
+    font-size: 20px;
+  }
+
+  .rss {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 470px) {
+  .header {
+    gap: 20px;
+  }
+
+  .buttons {
+    gap: 10px;
+  }
+
+  .restart-button, .leaders-button {
+    width: 120px;
+    padding: 12px 8px;
+  }
+
+  .footer-navigation {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-item, .footer-link, .rss {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 400px) {
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .header {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  .score-count {
+    flex-direction: column;
+    gap: 5px;
+    font-size: 16px;
+  }
+
+  .game-section {
+    width: calc(100vw - 30px);
+  }
+
+  .modal-content {
+    padding: 20px 15px;
+  }
+
+  .modal-content h2 {
+    font-size: 32px;
+  }
+
+  .modal-buttons {
+    gap: 10px;
+  }
+
+  .modal-content button {
+    padding: 12px 15px;
+  }
+}
