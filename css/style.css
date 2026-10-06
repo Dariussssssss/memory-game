@@ -90,8 +90,9 @@ h1 {
 
 .score-moves,
 .score-pairs {
-  width: 90px;
+  width: 95px;
   text-align: center;
+  font-weight: 800;
 }
 
 .buttons {
